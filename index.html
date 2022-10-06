@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8" />
+        <title>Présentation</title>
+        <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito&display=swap" rel="stylesheet">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+
+
+<body>
+    <div id='start'>
+        <h1>Bonjour! Dites-en nous plus sur vous !<span class="start_span_active">_</span></h1>
+        
+        <form method="POST" id="form_new_student" action="send_form.php">
+            <div class="form-group w-50">
+                <label for="nom">Nom</label>       
+                <input type="text" class="form-control" name="nom" id="prenom" required> 
+                <br>
+            </div>
+            
+            <div class="form-group w-50">
+                <label for="prenom">Prénom</label>        
+                <input type="text" class="form-control" name="prenom" id="prenom" required>
+                <br>
+            </div>
+
+            
+            <div class="form-group w-50">
+                <label for="email">Adresse email</label>     
+                <input type="email" class="form-control" name="email" id="email" required>
+                <br>
+            </div>
+            
+            <div class="form-group w-50">
+                <label for="tel">Numéro de téléphone</label>        
+                <input type="tel" class="form-control" name="tel" id="tel" required>           
+                <br>
+            </div>
+
+            <div class="form-group w-50">
+                <label for="niveau">Quel est votre niveau /statut</label>      
+                <select  class="form-control" id="niveau" name="niveau" required>
+                    <option value>Votre choix</option>
+                    <option value="">Première</option>
+                    <option value="0">Terminale</option>
+                    <option value="1">Bac+1</option>
+                    <option value="2">Bac+2</option>
+                    <option value="3">Bac+3</option>
+                    <option value="4">Bac+4</option>
+                    <option value="5">Bac+5</option>
+                    <option value="6">Parent</option>
+                </select>
+                <br>
+            </div>
+            
+            <div class="form-group w-50">
+                <label for="interet">Quelle filière vous intéresse le plus</label>       
+                <select class="form-control" name="interet" id="interet" required>
+                    <option value>Votre choix</option>
+                    <option value="7">Développement Web</option>
+                    <option value="8">Communication graphique</option>
+                    <option value="9">Community management</option>
+                    <option value="10">Web marketing</option>
+                    <option value="11">Mastère Expert Digitale</option>                    
+                </select>
+                <br>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary w-25">Confirmer</button>
+            
+        </form>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

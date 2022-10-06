@@ -1,0 +1,13 @@
+.start_span_active{
+    opacity: 1;
+}
+
+.start_span {
+    opacity: 0;
+}
+
+#form_new_student {
+    display: flex;
+    flex-direction: column;
+}
+
