@@ -2,7 +2,7 @@
 
 if(!isset($_POST['nom'], $_POST['interet'], $_POST['niveau'], $_POST['prenom'], $_POST['email'], $_POST['tel'])):
 
-    echo "Erreur, données incomplètes";
+    echo "Erreur, données incomplètes"; die();
 
     
 elseif(isset($_POST['nom'], $_POST['interet'], $_POST['niveau'], $_POST['prenom'], $_POST['email'], $_POST['tel'])):
