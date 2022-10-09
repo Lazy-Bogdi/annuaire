@@ -8,11 +8,25 @@ $formulaire = new Formulaire('Roger');
 $formulaire2 = new Form2;
 
 $formulaire2->debutFormulaire()
-    ->ajoutLabel('email', 'Email')
+    ->ajoutLabel('nom', 'Nom')
+    ->ajoutInput('text', 'nom', ['id' => 'nom', 'class' => 'form-control'])
+
+    ->ajoutLabel('prenom', 'Prénom')
+    ->ajoutInput('text', 'prenom', ['id' => 'prenom', 'class' => 'form-control'])
+
+    ->ajoutLabel('prenom', 'Prénom')
+    ->ajoutInput('text', 'prenom', ['id' => 'prenom', 'class' => 'form-control'])
+
+    ->ajoutLabel('email', 'Adresse email')
     ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
-    ->ajoutLabel('password', 'Mot de passe')
-    ->ajoutInput('password', 'password', ['id' => 'password', 'class' => 'form-control'])
-    ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary'])
+
+    ->ajoutLabel('tel', 'Numéro de téléphone')
+    ->ajoutInput('tel', 'tel', ['id' => 'tel', 'class' => 'form-control'])
+
+    ->ajoutLabel('prenom', 'Prénom')
+    ->ajoutInput('text', 'prenom', ['id' => 'prenom', 'class' => 'form-control'])
+
+    ->ajoutBouton('Confirmer', ['class' => 'btn btn-primary'])
     ->finFormulaire();
 
     
@@ -86,7 +100,7 @@ $formulaire2->debutFormulaire()
         </form>
         
         <?php 
-            $formJPO = ['formJPO' => $formulaire2->create()];
+            $formJPO = $formulaire2->create();
             print_r($formJPO);
         ?>
 

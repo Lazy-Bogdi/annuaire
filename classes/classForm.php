@@ -86,7 +86,7 @@ class Form2
             $this->formulaireCode = $this->formulaireCode . '';
         endif;
 
-        $this->formCode = $this->formulaireCode .">$texte</label>";
+        $this->formulaireCode = $this->formulaireCode .">$texte</label>";
 
         return $this;
 
@@ -95,7 +95,7 @@ class Form2
         //Ajout d'inputs
     public function ajoutInput(string $type, string $nom, array $attributs = []) {
 
-        $this->formulaireCode = $this->formulaireCode . "input type='$type' name = '$nom'";
+        $this->formulaireCode = $this->formulaireCode . "<input type='$type' name = '$nom'";
 
         if($attributs):
             $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs) . '>';
