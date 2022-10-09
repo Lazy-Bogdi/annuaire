@@ -53,7 +53,7 @@ class Form2
     }
 
     //Debut de la balise formulaire
-    public function debutFormulaire(string $methode = 'POST', string $action = 'send_form.php', array $attributs= []) 
+    public function debutFormulaire(string $methode, string $action, array $attributs= []) 
     {
         $this->formulaireCode = $this->formulaireCode . "<form action='$action' method='$methode'";
 

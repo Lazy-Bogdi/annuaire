@@ -7,7 +7,7 @@ $formulaire = new Formulaire('Roger');
 
 $formulaire2 = new Form2;
 
-$formulaire2->debutFormulaire()
+$formulaire2->debutFormulaire('POST', 'send_form.php', ['id' => 'form_new_student'])
     ->ajoutLabel('nom', 'Nom')
     ->ajoutInput('text', 'nom', ['id' => 'nom', 'class' => 'form-control'])
 
@@ -41,7 +41,7 @@ $formulaire2->debutFormulaire()
     
 
 
-// var_dump($formulaire); die();
+// var_dump($formulaire2); die();
 ?>
 
 <!doctype html>
@@ -70,6 +70,8 @@ $formulaire2->debutFormulaire()
         ?>
 
     </div>
+
+    <script src="script.js"></script>
 
 </body>
 
