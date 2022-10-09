@@ -60,7 +60,7 @@ class Form2
         if($attributs):
             $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs) . '>';
         else:
-            $this->formulaireCode = '>';
+            $this->formulaireCode = $this->formulaireCode . '>';
         endif;
 
         return $this;
@@ -83,7 +83,7 @@ class Form2
         if($attributs):
             $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs);
         else:
-            $this->formulaireCode = '';
+            $this->formulaireCode = $this->formulaireCode . '';
         endif;
 
         $this->formCode = $this->formulaireCode .">$texte</label>";
@@ -92,7 +92,7 @@ class Form2
 
     }
 
-        //Ajout d"inputs
+        //Ajout d'inputs
     public function ajoutInput(string $type, string $nom, array $attributs = []) {
 
         $this->formulaireCode = $this->formulaireCode . "input type='$type' name = '$nom'";
@@ -100,10 +100,24 @@ class Form2
         if($attributs):
             $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs) . '>';
         else:
-            $this->formulaireCode = '>';
+            $this->formulaireCode = $this->formulaireCode .'>';
         endif;
 
         return $this;
+    }
+
+        //Ajout des selects
+    public function ajoutSelect(string $nom, array $option, array $attributs=[]) {
+        $this->formulaireCode = $this->formulaireCode . "<select name ='$nom' ";
+
+        if($attributs):
+            $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs) . '>';
+        else:
+            $this->formulaireCode = $this->formulaireCode .'>';
+        endif;
+
+        return $this;
+
     }
 }
 
