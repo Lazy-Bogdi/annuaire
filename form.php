@@ -5,6 +5,19 @@ require 'classes/classForm.php';
 
 $formulaire = new Formulaire('Roger');
 
+$formulaire2 = new Form2;
+
+$formulaire2->debutFormulaire()
+    ->ajoutLabel('email', 'Email')
+    ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
+    ->ajoutLabel('password', 'Mot de passe')
+    ->ajoutInput('password', 'password', ['id' => 'password', 'class' => 'form-control'])
+    ->ajoutBouton('Me connecter', ['class' => 'btn btn-primary'])
+    ->finFormulaire();
+
+    
+
+
 // var_dump($formulaire); die();
 ?>
 
@@ -72,8 +85,13 @@ $formulaire = new Formulaire('Roger');
 
         </form>
         
+        <?php 
+            $formJPO = ['formJPO' => $formulaire2->create()];
+            print_r($formJPO);
+        ?>
+
     </div>
 
-</body
+</body>
 
 </html>

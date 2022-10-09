@@ -53,7 +53,7 @@ class Form2
     }
 
     //Debut de la balise formulaire
-    public function debutFormulaire(string $methode = 'post', string $action = 'send_form.php', array $attributs= []) 
+    public function debutFormulaire(string $methode = 'POST', string $action = 'send_form.php', array $attributs= []) 
     {
         $this->formulaireCode = $this->formulaireCode . "<form action='$action' method='$methode'";
 
@@ -80,7 +80,7 @@ class Form2
     public function ajoutLabel(string $for, string $texte, array $attributs = []) {
         $this->formulaireCode = $this->formulaireCode . "<label for='$for'";
 
-        if($attributs):
+        if($attributs == true):
             $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs);
         else:
             $this->formulaireCode = $this->formulaireCode . '';
@@ -116,8 +116,28 @@ class Form2
             $this->formulaireCode = $this->formulaireCode .'>';
         endif;
 
-        return $this;
+        foreach($options as $valeur => $texte):
+            $this->formulaireCode = $this->formulaireCode . "<option value='$valeur'> $texte </option>";
+        endforeach;
 
+        $this->formulaireCode = $this->formulaireCode . "</select>";
+
+        return $this;
+    }
+
+    public function ajoutBouton(string $texte, array $attributs= []) {
+
+        $this->formulaireCode = $this->formulaireCode . "<button";
+
+        if($attributs):
+            $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs);
+        else:
+            $this->formulaireCode = $this->formulaireCode . '';
+        endif;
+        
+        $this->formulaireCode = $this->formulaireCode . "> $texte </button>";
+
+        return $this;
     }
 }
 
