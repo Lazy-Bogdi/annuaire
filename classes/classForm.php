@@ -127,7 +127,7 @@ class Form2
 
     public function ajoutBouton(string $texte, array $attributs= []) {
 
-        $this->formulaireCode = $this->formulaireCode . "<button";
+        $this->formulaireCode = $this->formulaireCode . "<br><button";
 
         if($attributs):
             $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs);

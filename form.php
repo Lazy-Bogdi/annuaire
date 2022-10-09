@@ -24,10 +24,16 @@ $formulaire2->debutFormulaire()
     ->ajoutInput('tel', 'tel', ['id' => 'tel', 'class' => 'form-control'])
 
     ->ajoutLabel('niveau', 'Quel est votre niveau / statut ?')
-    ->ajoutSelect('niveau', ['0' =>'Seconde', '1' =>'Première', '2' =>'Terminale', '3' =>'Bac +1', '4' =>'Bac +2', '5' =>'Bac +3', '6' =>'Bac +4/+5', '7' =>'Parent'] , ['id' => 'niveau', 'class' => 'form-control'])
+    ->ajoutSelect(
+        'niveau', 
+        ['0' =>'Seconde', '1' =>'Première', '2' =>'Terminale', '3' =>'Bac +1', '4' =>'Bac +2', '5' =>'Bac +3', '6' =>'Bac +4/+5', '7' =>'Parent'] ,
+        ['id' => 'niveau', 'class' => 'form-control'])
 
     ->ajoutLabel('interet', 'Quelle filière vous intéresse le plus ?')
-    //->ajoutSelect('interet', 'interet', ['id' => 'niveau', 'class' => 'form-control'])
+    ->ajoutSelect(
+        'niveau', 
+        ['8' =>'Communication graphique', '9' =>'Community Management', '10' =>'Développement web', '11' =>'Web Marketing'] ,
+        ['id' => 'niveau', 'class' => 'form-control'])
 
     ->ajoutBouton('Confirmer', ['class' => 'btn btn-primary'])
     ->finFormulaire();
@@ -55,52 +61,8 @@ $formulaire2->debutFormulaire()
 
     <div id="container">
 
-    <h1>Bonjour! Dites-en nous plus sur vous !<span class="start_span_active">_</span></h1><br>
+        <h1>Bonjour! Dites-en nous plus sur vous !<span class="start_span_active">_</span></h1><br>
 
-        <form method="POST" id="form_new_student" action="send_form.php">
-
-            <div class="form-group w-50">
-                <label for="nom">Nom</label>       
-                        
-                <?= $formulaire->input('nom'); ?>
-            </div>
-            
-            <div class="form-group w-50">
-                <label for="prenom">Prénom</label>       
-                        
-                <?= $formulaire->input('prenom'); ?>
-            </div>
-            
-            <div class="form-group w-50">
-                <label for="email">Adresse email</label>       
-                        
-                <?= $formulaire->input('email'); ?>
-            </div>
-
-            <div class="form-group w-50">
-                <label for="tel">Numéro de téléphone</label>       
-                        
-                <?= $formulaire->input('tel'); ?>
-            </div>
-
-            <div class="form-group w-50">
-                <label for="niveau">Quel est votre niveau / statut</label>       
-                        
-                <?= $formulaire->select('niveau'); ?>
-            </div>
-
-            <div class="form-group w-50">
-                <label for="niveau">Quel est votre niveau / statut</label>       
-                        
-                <?= $formulaire->select('niveau'); ?>
-            </div>
-            <br>
-
-            <?= $formulaire->submit('niveau'); ?>
-
-            
-
-        </form>
         
         <?php 
             $formJPO = $formulaire2->create();
