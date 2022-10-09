@@ -107,7 +107,7 @@ class Form2
     }
 
         //Ajout des selects
-    public function ajoutSelect(string $nom, array $option, array $attributs=[]) {
+    public function ajoutSelect(string $nom, array $options, array $attributs=[]) {
         $this->formulaireCode = $this->formulaireCode . "<select name ='$nom' ";
 
         if($attributs):

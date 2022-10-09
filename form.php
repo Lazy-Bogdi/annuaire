@@ -23,8 +23,11 @@ $formulaire2->debutFormulaire()
     ->ajoutLabel('tel', 'Numéro de téléphone')
     ->ajoutInput('tel', 'tel', ['id' => 'tel', 'class' => 'form-control'])
 
-    ->ajoutLabel('prenom', 'Prénom')
-    ->ajoutInput('text', 'prenom', ['id' => 'prenom', 'class' => 'form-control'])
+    ->ajoutLabel('niveau', 'Quel est votre niveau / statut ?')
+    ->ajoutSelect('niveau', ['0' =>'Seconde', '1' =>'Première', '2' =>'Terminale', '3' =>'Bac +1', '4' =>'Bac +2', '5' =>'Bac +3', '6' =>'Bac +4/+5', '7' =>'Parent'] , ['id' => 'niveau', 'class' => 'form-control'])
+
+    ->ajoutLabel('interet', 'Quelle filière vous intéresse le plus ?')
+    //->ajoutSelect('interet', 'interet', ['id' => 'niveau', 'class' => 'form-control'])
 
     ->ajoutBouton('Confirmer', ['class' => 'btn btn-primary'])
     ->finFormulaire();
