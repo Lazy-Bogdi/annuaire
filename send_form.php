@@ -1,12 +1,16 @@
 <?php 
 
-if(!isset($_POST['nom'], $_POST['interet'], $_POST['niveau'], $_POST['prenom'], $_POST['email'], $_POST['tel'])):
+require 'classes/classForm.php';
+
+
+if (!isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'] )):
 
     echo "Erreur, données incomplètes"; die();
 
     
-elseif(isset($_POST['nom'], $_POST['interet'], $_POST['niveau'], $_POST['prenom'], $_POST['email'], $_POST['tel'])):
+elseif (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'] )):
 
+    
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $interet = $_POST['interet'];
@@ -17,3 +21,6 @@ elseif(isset($_POST['nom'], $_POST['interet'], $_POST['niveau'], $_POST['prenom'
     var_dump($nom); die;
 
 endif;
+
+
+
