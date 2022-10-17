@@ -3,6 +3,42 @@
 
 require 'classes/classForm.php';
 
+$formulaire2 = new Form2;
+
+$formulaire2->debutFormulaire('POST', 'send_form.php', ['id' => 'form_new_student'])
+    ->ajoutLabel('nom', 'Nom')
+    ->ajoutInput('text', 'nom', ['id' => 'nom', 'class' => 'form-control'])
+
+    ->ajoutLabel('prenom', 'Prénom')
+    ->ajoutInput('text', 'prenom', ['id' => 'prenom', 'class' => 'form-control'])
+
+    ->ajoutLabel('email', 'Adresse email')
+    ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
+
+    ->ajoutLabel('tel', 'Numéro de téléphone')
+    ->ajoutInput('text', 'tel', ['id' => 'tel', 'class' => 'form-control'])
+
+    ->ajoutLabel('niveau', 'Quel est votre niveau / statut ?')
+    ->ajoutSelect(
+        'niveau', 
+        ["p" =>'Seconde', "p" =>'Première', "t" =>'Terminale', "b1" =>'Bac +1', "b2" =>'Bac +2', "B3" =>'Bac +3', "B45" =>'Bac +4/+5', "p" =>'Parent'] ,
+        ['id' => 'niveau', 'class' => 'form-control'])
+
+    ->ajoutLabel('interet', 'Quelle filière vous intéresse le plus ?')
+    ->ajoutSelect(
+        'interet', 
+        ['ComG' =>'Communication graphique', 'ComM' =>'Community Management', 'DevW' =>'Développement web', 'WebM' =>'Web Marketing'] ,
+        ['id' => 'niveau', 'class' => 'form-control'])
+
+    ->ajoutLabel('annee', 'En quelle année souhaitez-vous intégrer la Normandie Web School?' )
+    ->ajoutSelect(
+        'annee', 
+        ['A1' =>'Année 1 (Cursus de tronc commun)', 'A2' =>'Année 2', 'A3' =>'Année 3 (Année certifiante)'] ,
+        ['id' => 'niveau', 'class' => 'form-control'])
+
+    ->ajoutBouton('Confirmer', ['class' => 'btn btn-primary'])
+    ->finFormulaire();
+
     
 
 
@@ -26,12 +62,12 @@ require 'classes/classForm.php';
 
     <div id="container">
 
-        <h1>Bonjour! Dites-en nous plus sur vous !<span class="start_span_active">_</span></h1><br>
+        <h1>Bonjour! Dites nous-en plus sur vous !<span class="start_span_active">_</span></h1><br>
 
         
         <?php 
             $formJPO = $formulaire2->create();
-            print_r($formJPO);
+            echo $formJPO;
         ?>
 
     </div>
