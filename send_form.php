@@ -1,6 +1,7 @@
 <?php 
 
 require 'classes/classStudent.php';
+require_once 'connect.php';
 
 
 
@@ -23,10 +24,15 @@ elseif (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $
     // $annee = $_POST['annee'];
 
     $student = new Student($_POST['nom'], $_POST['prenom'],  $_POST['interet'], $_POST['niveau'], $_POST['email'], $_POST['tel'], $_POST['annee'] );
-
+    // echo $student . "<br>";
     
+    echo $student->nom;
 
-    echo $student;
+    $sql = "INSERT INTO students (nom, prenom, interet, niveau, email, tel, annee)
+    VALUES ('$student->nom', '$student->prenom', '$student->interet', '$student->niveau','$student->email', '$student->tel', '$student->annee')";
+    $query = $db->prepare($sql);
+    $query->execute();
+    
 endif;
 
 
