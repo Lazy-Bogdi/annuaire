@@ -9,7 +9,8 @@ class Student
     public string $email;
     public string $tel;
 
-    public function __construct( string $newNom, string $newPrenom, string $newInteret, string $newNiveau, string $newEmail, string $newTel) {
+    public function __construct( string $newNom, string $newPrenom, string $newInteret, string $newNiveau, string $newEmail, string $newTel) 
+    {
 
         $this->nom = $newNom;
         $this->prenom = $newPrenom;
@@ -22,8 +23,13 @@ class Student
 
     }
 
+    public function __toString()
+   {
+    $string = $this->nom . "<br>" . $this->prenom . "<br>" . $this->interet . "<br>" . $this->niveau . "<br>" . $this->email . "<br>" . $this->tel . "<br>";
+
+     return $string;
+   }
+
 }
 
-$student = new Student;
 
-$student->__construct('Monoté','Daria', 'Livre', 'Bac+5', 'blabla@blabla.com', '0654165855');
