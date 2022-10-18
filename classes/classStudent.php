@@ -25,12 +25,12 @@ class Student
 
     }
 
-    public function __toString()
-   {
-    $string = $this->nom . "<br>" . $this->prenom . "<br>" . $this->interet . "<br>" . $this->niveau . "<br>" . $this->email . "<br>" . $this->tel . "<br>" . $this->annee;
+//     public function __toString()
+//    {
+//     $string = $this->nom . "<br>" . $this->prenom . "<br>" . $this->interet . "<br>" . $this->niveau . "<br>" . $this->email . "<br>" . $this->tel . "<br>" . $this->annee . "<br>";
 
-     return $string;
-   }
+//      return $string;
+//    }
 
 }
 
