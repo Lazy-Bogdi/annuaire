@@ -7,34 +7,34 @@ $formulaire2 = new Form2;
 
 $formulaire2->debutFormulaire('POST', 'send_form.php', ['id' => 'form_new_student'])
     ->ajoutLabel('nom', 'Nom')
-    ->ajoutInput('text', 'nom', ['id' => 'nom', 'class' => 'form-control'])
+    ->ajoutInput('text', 'nom', ['id' => 'nom', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('prenom', 'Prénom')
-    ->ajoutInput('text', 'prenom', ['id' => 'prenom', 'class' => 'form-control'])
+    ->ajoutInput('text', 'prenom', ['id' => 'prenom', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('email', 'Adresse email')
-    ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control'])
+    ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('tel', 'Numéro de téléphone')
-    ->ajoutInput('text', 'tel', ['id' => 'tel', 'class' => 'form-control'])
+    ->ajoutInput('text', 'tel', ['id' => 'tel', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('niveau', 'Quel est votre niveau / statut ?')
     ->ajoutSelect(
         'niveau', 
         ["p" =>'Seconde', "p" =>'Première', "t" =>'Terminale', "b1" =>'Bac +1', "b2" =>'Bac +2', "B3" =>'Bac +3', "B45" =>'Bac +4/+5', "p" =>'Parent'] ,
-        ['id' => 'niveau', 'class' => 'form-control'])
+        ['id' => 'niveau', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('interet', 'Quelle filière vous intéresse le plus ?')
     ->ajoutSelect(
         'interet', 
         ['ComG' =>'Communication graphique', 'ComM' =>'Community Management', 'DevW' =>'Développement web', 'WebM' =>'Web Marketing'] ,
-        ['id' => 'niveau', 'class' => 'form-control'])
+        ['id' => 'niveau', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('annee', 'En quelle année souhaitez-vous intégrer la Normandie Web School?' )
     ->ajoutSelect(
         'annee', 
         ['A1' =>'Année 1 (Cursus de tronc commun)', 'A2' =>'Année 2', 'A3' =>'Année 3 (Année certifiante)'] ,
-        ['id' => 'niveau', 'class' => 'form-control'])
+        ['id' => 'niveau', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutBouton('Confirmer', ['class' => 'btn btn-primary'])
     ->finFormulaire();
