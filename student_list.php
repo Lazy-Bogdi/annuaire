@@ -3,33 +3,15 @@
     require_once 'connect.php';
     require 'classes/classStudent.php';
     require 'classes/classForm.php';
+    require 'fonctions/fullWord.php';
     
     $sql ="SELECT * FROM students";
     $query = $db->prepare($sql);
     $query->execute();
     $rows = $query->fetchAll();
 
-    function interet(string $fullWord) { 
-        
-        if():
-
-        if ($fullWord == 'ComG' ):
-            $fullWord = 'Communication Graphique';
-            return $fullWord;
-        elseif($fullWord == 'DevW'):
-            $fullWord = 'Développement Web';
-            return $fullWord;
-
-        elseif($fullWord == 'ComM'):
-            $fullWord = 'Community Management';
-            return $fullWord;
-
-        elseif($fullWord == 'WebM'):
-            $fullWord = 'Web Marketing';
-            return $fullWord;
-        endif;
-    }
-    // var_dump(interet('ComG'));die();
+    
+    //var_dump(fullWord('p',3));die();
 
 ?>
 
@@ -70,21 +52,11 @@
             
                 <tr>
                     <td> <?= $student->nom . "&nbsp;" .$student->prenom; ?> </td>                    
-                    <td> <?= $student->niveau; ?> </td>
+                    <td> <?= fullWord($student->niveau,3); ?> </td>
                     <td> <?= $student->email; ?> </td>
                     <td> <?= $student->tel; ?> </td>
-
-                    <td> 
-                        <?php
-
-                            $i = $student->interet;                            
-                            echo interet($i);
-                        ?>
-                         
-                         
-                    </td>
-
-                    <td> <?= $student->annee; ?> </td>
+                    <td> <?= fullWord($student->interet, 1); ?> </td>
+                    <td> <?= fullWord($student->annee, 2); ?> </td>
                 </tr>            
     <?php 
         endforeach;

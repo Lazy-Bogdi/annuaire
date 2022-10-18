@@ -16,12 +16,12 @@ $formulaire2->debutFormulaire('POST', 'send_form.php', ['id' => 'form_new_studen
     ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('tel', 'Numéro de téléphone')
-    ->ajoutInput('text', 'tel', ['id' => 'tel', 'class' => 'form-control', 'required' => 'required'])
+    ->ajoutInput('tel', 'tel', ['id' => 'tel', 'class' => 'form-control', 'required' => 'required', 'pattern' =>'^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$'])
 
     ->ajoutLabel('niveau', 'Quel est votre niveau / statut ?')
     ->ajoutSelect(
         'niveau', 
-        ["p" =>'Seconde', "p" =>'Première', "t" =>'Terminale', "b1" =>'Bac +1', "b2" =>'Bac +2', "B3" =>'Bac +3', "B45" =>'Bac +4/+5', "p" =>'Parent'] ,
+        ["p" =>'Seconde', "p" =>'Première', "t" =>'Terminale', "b" =>'Bac', "b1" =>'Bac +1', "b2" =>'Bac +2', "B3" =>'Bac +3', "b45" =>'Bac +4/+5', "p" =>'Parent'] ,
         ['id' => 'niveau', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('interet', 'Quelle filière vous intéresse le plus ?')
