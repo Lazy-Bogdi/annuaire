@@ -6,22 +6,22 @@
     opacity: 0;
 }
 
-#form_new_student {
+.form_new_student, .form_view_student {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-#form_new_student label {
+.form_new_student label, .form_view_student label {
     margin: 10px 0 10px 0;
 }
-#form_new_student button {
+.form_new_student button {
     background-color: #00a5a5;
     /* background-color: #fec800;
     background-color: #ca4b38 */
 
 }
 
-#container {
+.container {
     padding: 10% 25% 0 25%;
     
 }

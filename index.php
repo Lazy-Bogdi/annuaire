@@ -10,6 +10,7 @@
     $query = $db->prepare($sql);
     $query->execute();
     $rows = $query->fetchAll();
+    Database::disconnect(); 
 
     
     //var_dump(fullWord('p',3));die();
@@ -30,9 +31,11 @@
     </head>
     <body>
 
+    <div class="table-responsive">
         <table id="studentList" class="table table-dark table-striped table-bordered table-hover">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nom & Prénom</th>
                     <th>Niveau</th>
                     <th>Adresse email</th>
@@ -53,6 +56,7 @@
     ?>
             
                 <tr>
+                    <td> <?= $row['id'] ?></td>
                     <td> <?= $student->nom . "&nbsp;" .$student->prenom; ?> </td>                    
                     <td> <?= fullWord($student->niveau,3); ?> </td>
                     <td> <?= $student->email; ?> </td>
@@ -61,20 +65,20 @@
                     <td> <?= fullWord($student->annee, 2); ?> </td>
 
                     <td> 
-                        <a class="btn" href= <?= "voir.php?id= '". $row['id'] ."' "  ?>>Voir</a>
+                        <a class="btn btn-light" href= "<?= "voir.php?id=". $row['id'].'"'  ?>"  ?> Voir</a>
                     </td>
                     <td> 
-                        <a class="btn" href= <?= "modif.php?id= '". $row['id'] ."' "  ?>>Modifier</a>
+                        <a class="btn btn-success" href= "<?= "modif.php?id=". $row['id'].'"'  ?>"  ?> Modifier</a>
                     </td>
                     <td> 
-                        <a class="btn" href= <?= "supp.php?id= '". $row['id'] ."' "  ?>>Supprimer</a>
+                        <a class="btn btn-danger" href= "<?= "supp.php?id=". $row['id'].'"'  ?>" >Supprimer</a>
                     </td>
                 </tr>            
     <?php 
         endforeach;
-        Database::disconnect(); 
     ?>
             </tbody>
         </table>
+    <div>
     </body>
 </html>

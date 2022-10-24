@@ -5,7 +5,7 @@ require 'classes/classForm.php';
 
 $formulaire2 = new Form2;
 
-$formulaire2->debutFormulaire('POST', 'send_form.php', ['id' => 'form_new_student'])
+$formulaire2->debutFormulaire('POST', 'send_form.php', ['class' => 'form_new_student'])
     ->ajoutLabel('nom', 'Nom')
     ->ajoutInput('text', 'nom', ['id' => 'nom', 'class' => 'form-control', 'required' => 'required'])
 
@@ -60,7 +60,7 @@ $formulaire2->debutFormulaire('POST', 'send_form.php', ['id' => 'form_new_studen
 
 <body>
 
-    <div id="container">
+    <div class="container">
 
         <h1>Bonjour! Dites nous-en plus sur vous !<span class="start_span_active">_</span></h1><br>
 
