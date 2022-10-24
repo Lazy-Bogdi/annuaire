@@ -1,7 +1,7 @@
 <?php 
 
     require 'classes/classStudent.php';
-    require_once 'connect.php';
+    require 'connect.php';
 
 
 
@@ -31,11 +31,13 @@
 
 
 <?php
+    $db = Database::connect();
     $sql = "INSERT INTO students (nom, prenom, interet, niveau, email, tel, annee)
     VALUES ('$student->nom', '$student->prenom', '$student->interet', '$student->niveau','$student->email', '$student->tel', '$student->annee')";
     $query = $db->prepare($sql);
     $query->execute();
     header( "refresh:3;url=index.php" );
+    Database::disconnect(); 
 ?>
 
 <p> Les infos ont bien été enregistrées. (Redirection auto)  </p>
