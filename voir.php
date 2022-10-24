@@ -4,7 +4,7 @@
     require 'classes/classStudent.php';
     require 'classes/classForm.php';
     require 'fonctions/fullWord.php';
-    $formulaire = new Form2;
+    
 
 
 
@@ -17,8 +17,6 @@
     if ($id == null):
         header( "refresh:3;url=index.php" ); 
 
-    
-
     else:
 
         $db = Database::connect();
@@ -30,6 +28,8 @@
 
         $viewStudent = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee']);
 
+        $formulaire = new Form2;
+        
         $formulaire->debutFormulaire('', '#', ['class' => 'form_view_student'])
     ->ajoutLabel('nom', 'Nom')
     ->ajoutInput('text', 'nom', ['class' => 'form-control', 'disabled' => 'disabled', 'value' => $viewStudent->nom])
