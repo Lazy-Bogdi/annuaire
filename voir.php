@@ -16,8 +16,14 @@
 
     if ($id == null):
         header( "refresh:3;url=index.php" ); 
+?>
+        <p>Retour au menu<p>
+<?php
+    exit;
+    
 
     else:
+
 
         $db = Database::connect();
         $sql = "SELECT * FROM students where id =?";
