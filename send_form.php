@@ -42,7 +42,7 @@
 <?php  
         exit;
 
-        elseif($_POST['form1'] == 'form_modif'):
+        elseif($_POST['form_modif'] == 'form_modif'):
             $student = new Student($_POST['nom'], $_POST['prenom'],  $_POST['interet'], $_POST['niveau'], $_POST['email'], $_POST['tel'], $_POST['annee'] );
             $id = $_POST['idStudent'];
             // var_dump($id);die();
@@ -55,22 +55,26 @@
             header( "refresh:3;url=index.php" );
             ?>
             <p> Les infos ont bien été mises à jour. (Redirection auto)  </p>
-    <?php
-            exit;
-
-            elseif($_POST['form1'] == 'form_modif'):
-                $student = new Student($_POST['nom'], $_POST['prenom'],  $_POST['interet'], $_POST['niveau'], $_POST['email'], $_POST['tel'], $_POST['annee'] );
-                $id = $_POST['idStudent'];
-                // var_dump($id);die();
-    
-                $db = Database::connect();
-                $sql = "UPDATE students SET nom = ?, prenom = ?,interet = ?, niveau = ?, email = ?, tel = ?, annee = ?  WHERE id = ?";
-                $query = $db->prepare($sql);
-                $query->execute(array($student->nom, $student->prenom, $student->interet, $student->niveau, $student->email, $student->tel, $student->annee, $id));
-                Database::disconnect();
-                header( "refresh:3;url=index.php" );
-
+<?php
+            exit;      
         endif;
+
+    elseif($_POST['form_supp'] == 'form_supp'):
+        // $student = new Student($_POST['nom'], $_POST['prenom'],  $_POST['interet'], $_POST['niveau'], $_POST['email'], $_POST['tel'], $_POST['annee'] );
+        $id = $_POST['idSuppStudent'];
+        // var_dump($id);die();
+
+        $db = Database::connect();
+        $sql = "DELETE FROM students WHERE id = ?";
+        $query = $db->prepare($sql);
+        $query->execute(array($id));
+        Database::disconnect();
+        header( "refresh:3;url=index.php" );
+
+        ?>
+        <p> Les infos ont bien été supprimées (Redirection auto)  </p>
+<?php
+        exit;
     
     endif;
 

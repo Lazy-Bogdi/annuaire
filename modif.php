@@ -30,7 +30,7 @@
 
         $formulaire = new Form2;
         
-        $formulaire->debutFormulaire('POST', 'send_form.php', ['id' => 'modif_form', 'class' => 'form_new_student'])
+        $formulaire->debutFormulaire('POST', 'send_form.php', ['id' => 'form_modif', 'class' => 'form_new_student'])
         ->ajoutInput('hidden', 'form_modif', ['id' => 'nom', 'class' => 'form-control', 'value' =>'form_modif'])
 
         // ->ajoutLabel('idStudent', 'Id')

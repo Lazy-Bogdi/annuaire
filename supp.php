@@ -24,9 +24,10 @@
 
         $formulaire = new Form2;
 
-        $formulaire->debutFormulaire('POST', 'send_form.php', ['class' => 'form_supp_student form-inline'])
+        $formulaire->debutFormulaire('POST', 'send_form.php', ['id'=>'form_supp', 'class' => 'form_supp_student'])
         
         ->ajoutInput('hidden', 'form_supp', ['id' => 'nom', 'class' => 'form-control', 'value' =>'form_supp'])
+        ->ajoutInput('hidden', 'idStudent', ['id' => 'idSuppStudent', 'class' => 'form-control', 'value' => $id])
     
     
         ->ajoutBouton('Confirmer', ['class' => 'btn btn-danger'])
@@ -52,11 +53,14 @@
     </head>
     <body>
         <div class="container">
-                <h1> Supprimer le profil de <?= $suppStudent->prenom . " " .$suppStudent->nom ?> ? </h1><br>
-                <?php 
-                    $suppStudentForm = $formulaire->create();
-                    echo $suppStudentForm;
-                ?>
+            <h1> Supprimer le profil de ''<?= $suppStudent->prenom . " " .$suppStudent->nom ?>'' ? </h1><br>
+        
+            <?php 
+            
+                $suppStudentForm = $formulaire->create();
+                echo $suppStudentForm;
+            ?>
+            
         </div> 
         
     </body>
