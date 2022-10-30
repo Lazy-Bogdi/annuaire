@@ -6,12 +6,12 @@
     opacity: 0;
 }
 
-.form_new_student, .form_view_student {
+.form_new_student, .form_view_student, .form_modif_student {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-.form_new_student label, .form_view_student label {
+.form_new_student label, .form_view_student label, .form_modif_student label {
     margin: 10px 0 10px 0;
 }
 .form_new_student button {
@@ -23,7 +23,12 @@
 .form_supp_student{
     display: flex;
     justify-content: center;
+    margin: 0 10% 0 10%;
     
+}
+.container-supp {
+    margin:25% 15% 25% 15%;
+    text-align: center;
 }
 .form_supp_student button{
     display: flex;
@@ -32,8 +37,7 @@
 }
 
 .container {
-    padding: 10% 25% 0 25%;
-    
+    padding: 10% 25% 0 25%;    
 }
 .container h1{
     text-align: center;

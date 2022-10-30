@@ -12,6 +12,8 @@
     $rows = $query->fetchAll();
     Database::disconnect(); 
 
+    $currYear = (new DateTime)->format("Y");
+
     
     //var_dump(fullWord('p',3));die();
 
@@ -30,55 +32,73 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
     <body>
+    <div class="container">
 
-    <div class="table-responsive">
-        <table id="studentList" class="table table-dark table-striped table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nom & Prénom</th>
-                    <th>Niveau</th>
-                    <th>Adresse email</th>
-                    <th>Numéro de téléphone</th>
-                    <th>Cursus visé</th>
-                    <th>Année désirée</th>
-                    <th colspan="3">Edition</th>
-                </tr>
-            </thead>
-            <tbody>
+    <form method='GET' class='form_search' action="#">
+        <input id="datalist" type="text" name="form_search" list='form_search' placeholder="Bogdan" class="form-control">
+        <datalist id="form_search" >
+            <?php
+                foreach($rows as $row): ?>
+                <option value="<?= $row['prenom'] . '&nbsp;' . $row['nom']?>">
+            <?php
+                endforeach;                     
+            ?>
+        </datalist>
+        <br>
+        <button class='btn btn-success'>Rechercher</button>
+
+</form>
+        <div class="table-responsive">
+
+            <h1>Potentiels élèves pour la rentrée <?= $currYear+1 . '-' . $currYear+2?></h1><br>
+            <table id="studentList" class="table table-dark table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom & Prénom</th>
+                        <th>Niveau</th>
+                        <th>Adresse email</th>
+                        <th>Numéro de téléphone</th>
+                        <th>Cursus visé</th>
+                        <th>Année désirée</th>
+                        <th colspan="3">Edition</th>
+                    </tr>
+                </thead>
+                <tbody>
 
 
-    <?php
-       
-        foreach($rows as $row):
-            $student = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee']);
+        <?php
+        
+            foreach($rows as $row):
+                $student = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee']);
 
-    ?>
-            
-                <tr>
-                    <td> <?= $row['id'] ?></td>
-                    <td> <?= $student->nom . "&nbsp;" .$student->prenom; ?> </td>                    
-                    <td> <?= fullWord($student->niveau,3); ?> </td>
-                    <td> <?= $student->email; ?> </td>
-                    <td> <?= $student->tel; ?> </td>
-                    <td> <?= fullWord($student->interet, 1); ?> </td>
-                    <td> <?= fullWord($student->annee, 2); ?> </td>
+        ?>
+                
+                    <tr>
+                        <td> <?= $row['id'] ?></td>
+                        <td> <?= $student->nom . "&nbsp;" .$student->prenom; ?> </td>                    
+                        <td> <?= fullWord($student->niveau,3); ?> </td>
+                        <td> <?= $student->email; ?> </td>
+                        <td> <?= $student->tel; ?> </td>
+                        <td> <?= fullWord($student->interet, 1); ?> </td>
+                        <td> <?= fullWord($student->annee, 2); ?> </td>
 
-                    <td> 
-                        <a class="btn btn-light" href= "<?= "voir.php?id=". $row['id'].'"'  ?>"  ?> Voir</a>
-                    </td>
-                    <td> 
-                        <a class="btn btn-success" href= "<?= "modif.php?id=". $row['id'].'"'  ?>"  ?> Modifier</a>
-                    </td>
-                    <td> 
-                        <a class="btn btn-danger" href= "<?= "supp.php?id=". $row['id'].'"'  ?>" >Supprimer</a>
-                    </td>
-                </tr>            
-    <?php 
-        endforeach;
-    ?>
-            </tbody>
-        </table>
-    <div>
+                        <td> 
+                            <a class="btn btn-light" href= "<?= "voir.php?id=". $row['id'].'"'  ?>"  ?> Voir</a>
+                        </td>
+                        <td> 
+                            <a class="btn btn-success" href= "<?= "modif.php?id=". $row['id'].'"'  ?>"  ?> Modifier</a>
+                        </td>
+                        <td> 
+                            <a class="btn btn-danger" href= "<?= "supp.php?id=". $row['id'].'"'  ?>" >Supprimer</a>
+                        </td>
+                    </tr>            
+        <?php 
+            endforeach;
+        ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
     </body>
 </html>

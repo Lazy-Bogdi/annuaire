@@ -58,6 +58,8 @@
     ->ajoutLabel('annee', 'Année d\'intérêt' )
     ->ajoutInput('annee', '', ['class' => 'form-control', 'disabled' => 'disabled', 'value' => fullWord($viewStudent->annee,2)])
 
+    ->ajoutLien('Modifier', ['class' => 'btn btn-success', 'href' => 'modif.php?id='.$id.''])
+
     ->finFormulaire();
 
 
@@ -79,11 +81,13 @@
     </head>
     <body>
         <div class="container">
+        <a class="btn btn-warning" href='index.php'>Retour à la liste des étudiants</a>
             <h1> <?= $viewStudent->prenom . " " .$viewStudent->nom ?><span class="start_span_active">_</span></h1><br>
             <?php 
                 $viewStudentForm = $formulaire->create();
                 echo $viewStudentForm;
             ?>
+            
         </div>  
         <script src="script.js"></script>
       

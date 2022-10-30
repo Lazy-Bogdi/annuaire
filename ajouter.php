@@ -19,7 +19,7 @@ require 'classes/classForm.php';
 $formulaire2 = new Form2;
 
 $formulaire2->debutFormulaire('POST', 'send_form.php', ['id' => 'add_form', 'class' => 'form_new_student'])
-    ->ajoutInput('hidden', 'form1', ['id' => 'nom', 'class' => 'form-control', 'value' =>'form_add'])
+    ->ajoutInput('hidden', 'form_add', ['id' => 'nom', 'class' => 'form-control', 'value' =>'form_add'])
     ->ajoutLabel('nom', 'Nom')
     ->ajoutInput('text', 'nom', ['id' => 'nom', 'class' => 'form-control', 'required' => 'required'])
 

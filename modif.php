@@ -30,7 +30,7 @@
 
         $formulaire = new Form2;
         
-        $formulaire->debutFormulaire('POST', 'send_form.php', ['id' => 'form_modif', 'class' => 'form_new_student'])
+        $formulaire->debutFormulaire('POST', 'send_form.php', ['id' => 'form_modif', 'class' => 'form_modif_student'])
         ->ajoutInput('hidden', 'form_modif', ['id' => 'nom', 'class' => 'form-control', 'value' =>'form_modif'])
 
         // ->ajoutLabel('idStudent', 'Id')
@@ -66,7 +66,8 @@
             ['A1' =>'Année 1 (Cursus de tronc commun)', 'A2' =>'Année 2', 'A3' =>'Année 3 (Année certifiante)'] ,
             ['id' => 'niveau', 'class' => 'form-control', 'required' => 'required', 'value' => $modifStudent->annee])
 
-        ->ajoutBouton('Confirmer', ['class' => 'btn btn-primary'])
+        ->ajoutBouton('Confirmer', ['class' => 'btn btn-primary', 'type'=>'submit'])
+        ->ajoutLien('Retour à la lecture', ['class' => 'btn btn-success', 'href' => 'voir.php?id='.$id.''])
         ->finFormulaire();
 
 
@@ -87,12 +88,16 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
     <body>
+
+        
         <div class="container">
+            <a class="btn btn-warning" href='index.php'>Retour à la liste des étudiants</a>
             <h1> <?= $modifStudent->prenom . " " .$modifStudent->nom ?><span class="start_span_active">_</span></h1><br>
             <?php 
                 $modifStudentForm = $formulaire->create();
                 echo $modifStudentForm;
             ?>
+            
         </div>  
         <script src="script.js"></script>
       

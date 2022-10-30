@@ -47,7 +47,7 @@ class Form2
 
         foreach($attributs as $attribut => $valeur){
 
-                $str = "$str" . " $attribut='$valeur'";        
+                $str .= " $attribut='$valeur'";        
         }
 
         return $str;
@@ -56,12 +56,12 @@ class Form2
     //Debut de la balise formulaire
     public function debutFormulaire(string $methode, string $action, array $attributs= []) 
     {
-        $this->formulaireCode = $this->formulaireCode . "<form action='$action' method='$methode'";
+        $this->formulaireCode .=  "<form action='$action' method='$methode'";
 
         if($attributs):
-            $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs) . '>';
+            $this->formulaireCode .=  $this->ajoutAttributs($attributs) . '>';
         else:
-            $this->formulaireCode = $this->formulaireCode . '>';
+            $this->formulaireCode .= '>';
         endif;
 
         return $this;
@@ -71,7 +71,7 @@ class Form2
     //Fin du formulaire
     public function finFormulaire()
     {
-        $this->formulaireCode = $this->formulaireCode . '</form>';
+        $this->formulaireCode .=  '</form>';
 
         return $this;
     }
@@ -79,15 +79,15 @@ class Form2
     //DIFFERENTS CHAMPS DU FORM
         //Ajout des labels
     public function ajoutLabel(string $for, string $texte, array $attributs = []) {
-        $this->formulaireCode = $this->formulaireCode . "<label for='$for'";
+        $this->formulaireCode .=  "<label for='$for'";
 
         if($attributs == true):
-            $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs);
+            $this->formulaireCode .= $this->ajoutAttributs($attributs);
         else:
-            $this->formulaireCode = $this->formulaireCode . '';
+            $this->formulaireCode .=  '';
         endif;
 
-        $this->formulaireCode = $this->formulaireCode .">$texte</label>";
+        $this->formulaireCode .= ">$texte</label>";
 
         return $this;
 
@@ -96,12 +96,12 @@ class Form2
         //Ajout d'inputs
     public function ajoutInput(string $type, string $nom, array $attributs = []) {
 
-        $this->formulaireCode = $this->formulaireCode . "<input type='$type' name = '$nom'";
+        $this->formulaireCode .= "<input type='$type' name = '$nom'";
 
         if($attributs):
-            $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs) . '>';
+            $this->formulaireCode .= $this->ajoutAttributs($attributs) . '>';
         else:
-            $this->formulaireCode = $this->formulaireCode .'>';
+            $this->formulaireCode .= '>';
         endif;
 
         return $this;
@@ -109,34 +109,66 @@ class Form2
 
         //Ajout des selects
     public function ajoutSelect(string $nom, array $options, array $attributs=[]) {
-        $this->formulaireCode = $this->formulaireCode . "<select name ='$nom' ";
+        $this->formulaireCode .=  "<select name ='$nom' ";
 
         if($attributs):
-            $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs) . '>';
+            $this->formulaireCode .=  $this->ajoutAttributs($attributs) . '>';
         else:
-            $this->formulaireCode = $this->formulaireCode .'>';
+            $this->formulaireCode .= '>';
         endif;
 
         foreach($options as $valeur => $texte):
-            $this->formulaireCode = $this->formulaireCode . "<option value='$valeur'> $texte </option>";
+            $this->formulaireCode .=  "<option value='$valeur'> $texte </option>";
         endforeach;
 
-        $this->formulaireCode = $this->formulaireCode . "</select>";
+        $this->formulaireCode .= "</select>";
+
+        return $this;
+    }
+    public function ajoutDatalist(array $options, array $attributs=[]) {
+        $this->formulaireCode .= "<datalist";
+
+        if($attributs):
+            $this->formulaireCode .=  $this->ajoutAttributs($attributs) . '>';
+        else:
+            $this->formulaireCode .= '>';
+        endif;
+
+        foreach($options as $valeur => $texte):
+            $this->formulaireCode .=  "<option value='$valeur'> $texte </option>";
+        endforeach;
+
+        $this->formulaireCode .=  "</datalist>";
 
         return $this;
     }
 
     public function ajoutBouton(string $texte, array $attributs= []) {
 
-        $this->formulaireCode = $this->formulaireCode . "<br><button";
+        $this->formulaireCode .=  "<br><button";
 
         if($attributs):
-            $this->formulaireCode = $this->formulaireCode . $this->ajoutAttributs($attributs);
+            $this->formulaireCode .=  $this->ajoutAttributs($attributs);
         else:
-            $this->formulaireCode = $this->formulaireCode . '';
+            $this->formulaireCode .=  '';
         endif;
         
-        $this->formulaireCode = $this->formulaireCode . "> $texte </button>";
+        $this->formulaireCode .=  "> $texte </button>";
+
+        return $this;
+    }
+
+    public function ajoutLien(string $texte, array $attributs= []) {
+
+        $this->formulaireCode .=  "<br><a";
+
+        if($attributs):
+            $this->formulaireCode .=  $this->ajoutAttributs($attributs);
+        else:
+            $this->formulaireCode .=  '';
+        endif;
+        
+        $this->formulaireCode .= "> $texte </a>";
 
         return $this;
     }

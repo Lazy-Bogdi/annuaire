@@ -27,11 +27,11 @@
         $formulaire->debutFormulaire('POST', 'send_form.php', ['id'=>'form_supp', 'class' => 'form_supp_student'])
         
         ->ajoutInput('hidden', 'form_supp', ['id' => 'nom', 'class' => 'form-control', 'value' =>'form_supp'])
-        ->ajoutInput('hidden', 'idStudent', ['id' => 'idSuppStudent', 'class' => 'form-control', 'value' => $id])
+        ->ajoutInput('hidden', 'idSuppStudent', ['id' => 'idSuppStudent', 'class' => 'form-control', 'value' => $id])
     
     
         ->ajoutBouton('Confirmer', ['class' => 'btn btn-danger'])
-        ->ajoutBouton('Annuler', ['class' => 'btn btn-success'])
+        ->ajoutLien('Annuler', ['class' => 'btn btn-success', 'href' => 'index.php'])
     
         ->finFormulaire();
     }
@@ -52,7 +52,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
     <body>
-        <div class="container">
+        <div class="container-supp">
             <h1> Supprimer le profil de ''<?= $suppStudent->prenom . " " .$suppStudent->nom ?>'' ? </h1><br>
         
             <?php 
