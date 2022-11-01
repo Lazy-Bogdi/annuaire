@@ -1,16 +1,19 @@
 <?php 
 
     require_once 'connect.php';
-    require 'classes/classStudent.php';
-    require 'classes/classForm.php';
+    require 'classes/ClassStudent.php';
+    require 'classes/ClassForm.php';
     require 'classes/UrlMaker.php';
+    require 'classes/TriTable.php';
     require 'fonctions/fullWord.php';
-    define('PAR_PAGE', 10);
-    
+    define('PAR_PAGE', 10); //Constante pour nombre de résultats par page
+     
     $db = Database::connect();
-    $sql ="SELECT * FROM students";
-    $queryCount = "SELECT COUNT(*) AS count FROM students";
-    $params = [];
+    $sql ="SELECT * FROM students"; //Requete de base
+    $queryCount = "SELECT COUNT(*) AS count FROM students"; //Comptage des requetes
+    $params = []; //Clauses des requêtes
+    $triable = ["id",  "nom", "prenom", "interet", "niveau", "email", "tel", "annee"];
+
 //Recherche par nom/prénom
     if (!empty($_GET['form_search'])){
         $sql .= " WHERE nom LIKE :nom or prenom LIKE :nom";
@@ -19,11 +22,12 @@
     }
 
 //Tri des données
-if($_GET['tri']) {
+if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
     $direction = $_GET['dir'] ?? 'asc';
     if(!in_array($direction, ['asc', 'desc'])) {
         $direction = 'asc';
     }
+    $sql .= " ORDER BY " . $_GET['tri'] . " $direction";
 
 }
 
@@ -86,13 +90,13 @@ if($_GET['tri']) {
             <table id="studentList" class="table table-dark table-striped table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nom & Prénom</th>
-                        <th>Niveau</th>
-                        <th>Adresse email</th>
-                        <th>Numéro de téléphone</th>
-                        <th>Cursus visé</th>
-                        <th>Année désirée</th>
+                        <th><?= TriTable::tri('id','ID', $_GET)?></th>
+                        <th><?= TriTable::tri('prenom','Prénom', $_GET) . ' & ' .TriTable::tri('nom','Nom', $_GET) ?></th>
+                        <th><?= TriTable::tri('niveau','Niveau', $_GET)?></th>
+                        <th><?= TriTable::tri('email','Adresse email', $_GET)?></th>
+                        <th><?= TriTable::tri('tel','Numéro de téléphone', $_GET)?></th>
+                        <th><?= TriTable::tri('interet','Cursus visé', $_GET)?></th>
+                        <th> <?= TriTable::tri('annee','Année désirée', $_GET)?></th>
                         <th colspan="3">Edition</th>
                     </tr>
                 </thead>
@@ -116,7 +120,7 @@ if($_GET['tri']) {
                         <td> <?= fullWord($student->annee, 2); ?> </td>
 
                         <td> 
-                            <a class="btn btn-light" href= "<?= "voir.php?id=". $row['id'].'"'  ?>"  ?> Voir</a>
+                            <a class="btn btn-outline-light" href= "<?= "voir.php?id=". $row['id'].'"'  ?>"  ?> Voir</a>
                         </td>
                         <td> 
                             <a class="btn btn-success" href= "<?= "modif.php?id=". $row['id'].'"'  ?>"  ?> Modifier</a>
@@ -131,10 +135,10 @@ if($_GET['tri']) {
                 </tbody>
             </table>
             <?php if($pages > 1 && $page > 1): ?>
-                <a href="?<?= UrlMaker::avecParams('p', $page - 1)?>" class='btn btn-primary'>< Page précedente </a>
+                <a href="?<?= UrlMaker::avecParams($_GET,'p', $page - 1)?>" class='btn btn-primary'>< Page précedente </a>
                 <?php endif; ?>
             <?php if($pages > 1 && $page < $pages ): ?>
-                <a href="?<?= UrlMaker::avecParams('p', $page + 1)?>" class='btn btn-primary'>Page suivante ></a>
+                <a href="?<?= UrlMaker::avecParams($_GET,'p', $page + 1)?>" class='btn btn-primary'>Page suivante ></a>
                 <?php endif; ?>
         </div>
     </div>

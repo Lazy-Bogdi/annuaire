@@ -1,8 +1,8 @@
 <?php 
 
     require 'connect.php';
-    require 'classes/classStudent.php';
-    require 'classes/classForm.php';
+    require 'classes/ClassStudent.php';
+    require 'classes/ClassForm.php';
     require 'fonctions/fullWord.php';
     
 

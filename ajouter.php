@@ -14,7 +14,7 @@
 ##TODO: AJOUTER AGE / GENRE##
 ##TODO: AJOUTER AGE / GENRE##
 ##TODO: AJOUTER AGE / GENRE##
-require 'classes/classForm.php';
+require 'classes/ClassForm.php';
 
 $formulaire2 = new Form2;
 

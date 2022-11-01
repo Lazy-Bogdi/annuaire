@@ -1,6 +1,6 @@
 <?php 
 
-    require 'classes/classStudent.php';
+    require 'classes/ClassStudent.php';
     require 'connect.php';
     error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
 
