@@ -3,6 +3,7 @@
     require_once 'connect.php';
     require 'classes/classStudent.php';
     require 'classes/classForm.php';
+    require 'classes/UrlMaker.php';
     require 'fonctions/fullWord.php';
     define('PAR_PAGE', 10);
     
@@ -13,21 +14,38 @@
 //Recherche par nom/prénom
     if (!empty($_GET['form_search'])){
         $sql .= " WHERE nom LIKE :nom or prenom LIKE :nom";
+        $queryCount .= " WHERE nom LIKE :nom or prenom LIKE :nom";
         $params['nom'] = '%' . $_GET['form_search'] . '%';
     }
 
+//Tri des données
+if($_GET['tri']) {
+    $direction = $_GET['dir'] ?? 'asc';
+    if(!in_array($direction, ['asc', 'desc'])) {
+        $direction = 'asc';
+    }
+
+}
+
+
 
 //Pages du tableau
-    $sql .= " LIMIT " . PAR_PAGE;
+    $page = (int)($_GET['p'] ?? 1);
+    $offset = ($page-1) * PAR_PAGE;
+
+
+    $sql .= " LIMIT " . PAR_PAGE . " OFFSET $offset";
 
     $query = $db->prepare($sql);
     $query->execute($params);
     $rows = $query->fetchAll();
 
     $query = $db->prepare($queryCount);
-    $query->execute();
+    $query->execute($params);
     $count = $query->fetch()['count']; 
     $pages = ceil($count / PAR_PAGE);
+
+
     Database::disconnect(); 
 //    var_dump( $pages, $count);die();
 
@@ -112,8 +130,11 @@
         ?>
                 </tbody>
             </table>
-            <?php if($pages > 1):?>
-                <a href='?p=2' class='btn btn-primary'>Page suivante</a>
+            <?php if($pages > 1 && $page > 1): ?>
+                <a href="?<?= UrlMaker::avecParams('p', $page - 1)?>" class='btn btn-primary'>< Page précedente </a>
+                <?php endif; ?>
+            <?php if($pages > 1 && $page < $pages ): ?>
+                <a href="?<?= UrlMaker::avecParams('p', $page + 1)?>" class='btn btn-primary'>Page suivante ></a>
                 <?php endif; ?>
         </div>
     </div>
