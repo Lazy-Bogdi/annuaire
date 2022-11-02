@@ -32,14 +32,10 @@ if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
 }
 
 
-
 //Pages du tableau
     $page = (int)($_GET['p'] ?? 1);
     $offset = ($page-1) * PAR_PAGE;
-
-
     $sql .= " LIMIT " . PAR_PAGE . " OFFSET $offset";
-
     $query = $db->prepare($sql);
     $query->execute($params);
     $rows = $query->fetchAll();
@@ -76,14 +72,14 @@ if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
     <body>
     <div class="container">
 
-    <form method='GET' class='form_search' action="">
-        <!-- condition isset dans le champ search avec ?? -->
-        <input id="form_search" type="text" name="form_search"  placeholder="Rechercher un contact" class="form-control" value="<?= htmlentities($_GET['form_search'] ?? null)  ?>"> 
-
-        <br>
-        <button class='btn btn-success' type='submit'>Rechercher</button>
-
-</form>
+        <form method='GET' class='form_search' action="">
+            <!-- condition isset dans le champ search avec ?? -->
+            <input id="form_search" type="text" name="form_search"  placeholder="Rechercher" class="form-control" value="<?= htmlentities($_GET['form_search'] ?? null)  ?>">
+            <br>
+            <button class='btn btn-success' type='submit'>Rechercher</button>
+        </form>
+        
+<!-- TODO FILTRE DE RECHERCHE PAR ANNE, VILLE -->
         <div class="table-responsive">
 
             <h1>Potentiels élèves pour la rentrée <?= $currYear+1 . '-' . $currYear+2?></h1><br>
