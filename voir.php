@@ -32,7 +32,7 @@
         $row = $query->fetch();
         Database::disconnect();
 
-        $viewStudent = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee']);
+        $viewStudent = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee'], $row['date_naissance'], $row['ville'], $row['etab_scol']);
 
         $formulaire = new Form2;
         

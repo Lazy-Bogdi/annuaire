@@ -9,8 +9,11 @@ class Student
     public string $email;
     public string $tel;
     public string $annee;
+    public string $birthDate;
+    public string $ville;
+    public string $school;
 
-    public function __construct( string $newNom, string $newPrenom, string $newInteret, string $newNiveau, string $newEmail, string $newTel, string $newAnnee) 
+    public function __construct( string $newNom, string $newPrenom, string $newInteret, string $newNiveau, string $newEmail, string $newTel, string $newAnnee, string $newBirthDate,string $newVille, string $newSchool) 
     {
 
         $this->nom = $newNom;
@@ -20,6 +23,9 @@ class Student
         $this->email = $newEmail;
         $this->tel = $newTel;
         $this->annee = $newAnnee;
+        $this->birthDate = $newBirthDate;
+        $this->ville = $newVille;
+        $this->school = $newSchool;
 
         return $this;
 

@@ -36,7 +36,10 @@
                 endif;
 
                 elseif($a==3):
-                    if($fullWord== "b"):
+                    if($fullWord== "t"):
+                        $fullWord ="Terminale";
+                        return $fullWord;
+                    elseif($fullWord== "b"):
                         $fullWord ="Niveau Bac";
                         return $fullWord;
                     elseif($fullWord== "b1"):

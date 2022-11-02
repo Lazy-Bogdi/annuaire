@@ -20,17 +20,28 @@ $formulaire2 = new Form2;
 
 $formulaire2->debutFormulaire('POST', 'send_form.php', ['id' => 'add_form', 'class' => 'form_new_student'])
     ->ajoutInput('hidden', 'form_add', ['id' => 'nom', 'class' => 'form-control', 'value' =>'form_add'])
+
     ->ajoutLabel('nom', 'Nom')
     ->ajoutInput('text', 'nom', ['id' => 'nom', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('prenom', 'Prénom')
     ->ajoutInput('text', 'prenom', ['id' => 'prenom', 'class' => 'form-control', 'required' => 'required'])
 
+    ->ajoutLabel('date_naissance', 'Date de naissance')
+    ->ajoutInput('date', 'date_naissance', ['id' => 'date_naissance', 'class' => 'form-control', 'required' => 'required'])
+
+    ->ajoutLabel('ville', 'Ville de résidence')
+    ->ajoutInput('text', 'ville', ['id' => 'ville', 'class' => 'form-control', 'required' => 'required'])
+
+
     ->ajoutLabel('email', 'Adresse email')
     ->ajoutInput('email', 'email', ['id' => 'email', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('tel', 'Numéro de téléphone')
     ->ajoutInput('tel', 'tel', ['id' => 'tel', 'class' => 'form-control', 'required' => 'required', 'pattern' =>'^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$'])
+
+    ->ajoutLabel('etab_scol', 'Dernier établissement fréquenté')
+    ->ajoutInput('text', 'etab_scol', ['id' => 'etab_scol', 'class' => 'form-control', 'required' => 'required'])
 
     ->ajoutLabel('niveau', 'Quel est votre niveau / statut ?')
     ->ajoutSelect(

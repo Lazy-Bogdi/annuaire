@@ -21,6 +21,8 @@
         $params['nom'] = '%' . $_GET['form_search'] . '%';
     }
 
+//Filtre
+
 //Tri des données
 if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
     $direction = $_GET['dir'] ?? 'asc';
@@ -78,6 +80,16 @@ if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
             <br>
             <button class='btn btn-success' type='submit'>Rechercher</button>
         </form>
+        <form method='GET' class='form_filtre' action="">
+            <!-- condition isset dans le champ search avec ?? -->
+            <select name='form_filtre' class='form-control'>
+                <option value='0'>Selectionne</option>
+
+            </select>
+            <br>
+            <button class='btn btn-success' type='submit'>Rechercher</button>
+        </form>
+
         
 <!-- TODO FILTRE DE RECHERCHE PAR ANNE, VILLE -->
         <div class="table-responsive">
@@ -93,6 +105,9 @@ if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
                         <th><?= TriTable::tri('tel','Numéro de téléphone', $_GET)?></th>
                         <th><?= TriTable::tri('interet','Cursus visé', $_GET)?></th>
                         <th> <?= TriTable::tri('annee','Année désirée', $_GET)?></th>
+                        <th> <?= TriTable::tri('date_naissance','Date de naissance', $_GET)?></th>
+                        <th> <?= TriTable::tri('ville','Ville de résidence', $_GET)?></th>
+                        <th> <?= TriTable::tri('etab_scol','Dernier Etablissement scolaire fréquenté', $_GET)?></th>
                         <th colspan="3">Edition</th>
                     </tr>
                 </thead>
@@ -102,7 +117,7 @@ if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
         <?php
         
             foreach($rows as $row):
-                $student = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee']);
+                $student = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee'], $row['date_naissance'], $row['ville'], $row['etab_scol']);
 
         ?>
                 
@@ -114,6 +129,9 @@ if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
                         <td> <?= $student->tel; ?> </td>
                         <td> <?= fullWord($student->interet, 1); ?> </td>
                         <td> <?= fullWord($student->annee, 2); ?> </td>
+                        <td> <?= $student->birthDate; ?> </td>
+                        <td> <?= $student->ville; ?> </td>
+                        <td> <?= $student->school; ?> </td>
 
                         <td> 
                             <a class="btn btn-outline-light" href= "<?= "voir.php?id=". $row['id'].'"'  ?>"  ?> Voir</a>

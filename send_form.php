@@ -11,19 +11,19 @@
 
     if($_POST['form_add'] ==  'form_add'):
 
-        if (!isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'] )):
+        if (!isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'], $_POST['date_naissance'], $_POST['ville'] , $_POST['etab_scol'])):
 
             echo "Erreur dans la complétion des données";
             
-        elseif (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'] )):
+        elseif (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'], $_POST['date_naissance'], $_POST['ville'] , $_POST['etab_scol'])):
 
-            $student = new Student($_POST['nom'], $_POST['prenom'],  $_POST['interet'], $_POST['niveau'], $_POST['email'], $_POST['tel'], $_POST['annee'] );
+            $student = new Student($_POST['nom'], $_POST['prenom'],  $_POST['interet'], $_POST['niveau'], $_POST['email'], $_POST['tel'], $_POST['annee'],$_POST['date_naissance'], $_POST['ville'], $_POST['etab_scol'] );
             // echo $student . "<br>";
 
 
             $db = Database::connect();
-            $sql = "INSERT INTO students (nom, prenom, interet, niveau, email, tel, annee)
-            VALUES ('$student->nom', '$student->prenom', '$student->interet', '$student->niveau','$student->email', '$student->tel', '$student->annee')";
+            $sql = "INSERT INTO students (nom, prenom, interet, niveau, email, tel, annee, date_naissance, ville, etab_scol)
+            VALUES ('$student->nom', '$student->prenom', '$student->interet', '$student->niveau','$student->email', '$student->tel', '$student->annee', '$student->birthDate', '$student->ville', '$student->school')";
             $query = $db->prepare($sql);
             $query->execute();
             Database::disconnect(); 
@@ -39,20 +39,20 @@
 
     elseif($_POST['form_modif'] == 'form_modif'):
 
-        if (!isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'] )):
+        if (!isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'], $_POST['date_naissance'], $_POST['ville'] , $_POST['etab_scol'])):
 
             echo "Erreur dans la complétion des données";
 
-        elseif (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'] )):
+        elseif (isset($_POST['nom'], $_POST['prenom'], $_POST['email'], $_POST['tel'], $_POST['niveau'], $_POST['interet'], $_POST['interet'], $_POST['annee'], $_POST['date_naissance'], $_POST['ville'] , $_POST['etab_scol'])):
 
-            $student = new Student($_POST['nom'], $_POST['prenom'],  $_POST['interet'], $_POST['niveau'], $_POST['email'], $_POST['tel'], $_POST['annee'] );
+            $student = new Student($_POST['nom'], $_POST['prenom'],  $_POST['interet'], $_POST['niveau'], $_POST['email'], $_POST['tel'], $_POST['annee'],$_POST['date_naissance'], $_POST['ville'], $_POST['etab_scol']);
             $id = $_POST['idStudent'];
             // var_dump($id);die();
 
             $db = Database::connect();
-            $sql = "UPDATE students SET nom = ?, prenom = ?,interet = ?, niveau = ?, email = ?, tel = ?, annee = ?  WHERE id = ?";
+            $sql = "UPDATE students SET nom = ?, prenom = ?,interet = ?, niveau = ?, email = ?, tel = ?, annee = ?, date_naissance = ?, ville = ?, etab_scol = ?  WHERE id = ?";
             $query = $db->prepare($sql);
-            $query->execute(array($student->nom, $student->prenom, $student->interet, $student->niveau, $student->email, $student->tel, $student->annee, $id));
+            $query->execute(array($student->nom, $student->prenom, $student->interet, $student->niveau, $student->email, $student->tel, $student->annee,$student->birthDate,$student->ville,$student->school, $id));
             Database::disconnect();
             header( "refresh:3;url=index.php" );
 ?>
