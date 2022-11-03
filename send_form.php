@@ -21,12 +21,11 @@
             // echo $student . "<br>";
 
 
-            $db = Database::connect();
+            
             $sql = "INSERT INTO students (nom, prenom, interet, niveau, email, tel, annee, date_naissance, ville, etab_scol)
             VALUES ('$student->nom', '$student->prenom', '$student->interet', '$student->niveau','$student->email', '$student->tel', '$student->annee', '$student->birthDate', '$student->ville', '$student->school')";
             $query = $db->prepare($sql);
-            $query->execute();
-            Database::disconnect(); 
+            $query->execute(); 
             header( "refresh:3;url=index.php" );
 ?>
 
@@ -49,11 +48,11 @@
             $id = $_POST['idStudent'];
             // var_dump($id);die();
 
-            $db = Database::connect();
+            
             $sql = "UPDATE students SET nom = ?, prenom = ?,interet = ?, niveau = ?, email = ?, tel = ?, annee = ?, date_naissance = ?, ville = ?, etab_scol = ?  WHERE id = ?";
             $query = $db->prepare($sql);
             $query->execute(array($student->nom, $student->prenom, $student->interet, $student->niveau, $student->email, $student->tel, $student->annee,$student->birthDate,$student->ville,$student->school, $id));
-            Database::disconnect();
+            
             header( "refresh:3;url=index.php" );
 ?>
             <p> Les infos ont bien été mises à jour. (Redirection auto)  </p>
@@ -67,11 +66,11 @@
         $id = $_POST['idSuppStudent'];
         // var_dump($id);die();
 
-        $db = Database::connect();
+        
         $sql = "DELETE FROM students WHERE id = ?";
         $query = $db->prepare($sql);
         $query->execute(array($id));
-        Database::disconnect();
+        
         header( "refresh:3;url=index.php" );
 
 ?>

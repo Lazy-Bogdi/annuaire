@@ -25,12 +25,12 @@
     else:
 
 
-        $db = Database::connect();
+
         $sql = "SELECT * FROM students where id =?";
         $query = $db->prepare($sql);
         $query->execute(array($id));
         $row = $query->fetch();
-        Database::disconnect();
+
 
         $viewStudent = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee'], $row['date_naissance'], $row['ville'], $row['etab_scol']);
 

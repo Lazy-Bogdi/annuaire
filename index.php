@@ -6,20 +6,26 @@
     require 'classes/UrlMaker.php';
     require 'classes/TriTable.php';
     require 'fonctions/fullWord.php';
+    require 'fonctions/recherche.php';
     define('PAR_PAGE', 10); //Constante pour nombre de résultats par page
      
-    $db = Database::connect();
+    
     $sql ="SELECT * FROM students"; //Requete de base
     $queryCount = "SELECT COUNT(*) AS count FROM students"; //Comptage des requetes
-    $params = []; //Clauses des requêtes recherche
+    $paramSearch= []; //Clauses des requêtes recherche
     $triable = ["id",  "nom", "prenom", "interet", "niveau", "email", "tel", "annee"];
 
 //Recherche par nom/prénom
     if (!empty($_GET['form_search'])){
         $sql .= " WHERE nom LIKE :nom or prenom LIKE :nom";
         $queryCount .= " WHERE nom LIKE :nom or prenom LIKE :nom";
-        $params['nom'] = '%' . $_GET['form_search'] . '%';
+        $paramSearch['nom'] = '%' . $_GET['form_search'] . '%';
     }
+   
+
+    // var_dump($db);die();
+   
+    
 
 //Filtre
     if (!empty($_GET['form_filtre']) && !empty($_GET['form_search'])){
@@ -46,16 +52,17 @@
     $offset = ($page-1) * PAR_PAGE;
     $sql .= " LIMIT " . PAR_PAGE . " OFFSET $offset";
     $query = $db->prepare($sql);
-    $query->execute($params);
+    // var_dump($query);die();
+    $query->execute($paramSearch);
     $rows = $query->fetchAll();
 
     $query = $db->prepare($queryCount);
-    $query->execute($params);
+    $query->execute($paramSearch);
     $count = $query->fetch()['count']; 
     $pages = ceil($count / PAR_PAGE);
 
 
-    Database::disconnect(); 
+ 
 //    var_dump( $pages, $count);die();
 
     $currYear = (new DateTime)->format("Y");
@@ -157,13 +164,13 @@
         ?>
                 </tbody>
             </table>
-            <?php if($pages > 1 && $page > 1): ?>
+        </div>
+        <?php if($pages > 1 && $page > 1): ?>
                 <a href="?<?= UrlMaker::avecParams($_GET,'p', $page - 1)?>" class='btn btn-primary'>< Page précedente </a>
                 <?php endif; ?>
             <?php if($pages > 1 && $page < $pages ): ?>
                 <a href="?<?= UrlMaker::avecParams($_GET,'p', $page + 1)?>" class='btn btn-primary'>Page suivante ></a>
                 <?php endif; ?>
-        </div>
     </div>
     </body>
 </html>

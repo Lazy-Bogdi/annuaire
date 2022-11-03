@@ -1,44 +1,22 @@
 <?php
 
 
-class Database
-{
-    private static $dbName = "annuaire";
-    private static $dbHost = "localhost";
-    private static $dbUsername = "root";
-    private static $dbUserPassword = "";
-    private static $etat = null;
+$raw_db_data = file_get_contents('config.json');
+$db_data = json_decode($raw_db_data);
 
-    public function __construct()
-    {
-        die("");
-    }
-    public static function connect()
-    {
-        if (self::$etat == null):
-            try {
-                self::$etat = new PDO("mysql:host=" . self::$dbHost . ";" . "dbname=" . self::$dbName, self::$dbUsername, self::$dbUserPassword);
-            } catch (PDOException $e) {
-                die($e->getMessage());
-            }
-        endif;
-        return self::$etat;
-    }
-    public static function disconnect()
-    {
-        self::$etat = null;
-    }
+$dbName= $db_data->dbName;
+$dbHost= $db_data->dbHost;
+$dbUsername= $db_data->dbUsername;
+$dbUserPassword= $db_data->dbUserPassword;
+
+
+ 
+try{
+    $db = new PDO("mysql:host=" . $dbHost . ";" . "dbname=" . $dbName, $dbUsername, $dbUserPassword);
+} catch (PDOException $e) {
+    echo  'Erreur' . $e -> getMessage();
+    die();
 }
-
-
-
-// try{
-//     $db = new PDO ('mysql:host=localhost;dbname=annuaire', 'root', '');
-
-// } catch (PDOException $e) {
-//     echo  'Erreur' . $e -> getMessage();
-//     die();
-// }
 
 ?>
 

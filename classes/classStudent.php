@@ -1,4 +1,6 @@
 <?php 
+$raw_db_data = file_get_contents('config.json');
+$db_data = json_decode($raw_db_data);
 
 class Student 
 {

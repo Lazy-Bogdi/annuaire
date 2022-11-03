@@ -19,12 +19,12 @@
 
     else:
 
-        $db = Database::connect();
+        
         $sql = "SELECT * FROM students where id =?";
         $query = $db->prepare($sql);
         $query->execute(array($id));
         $row = $query->fetch();
-        Database::disconnect();
+        
 
         $modifStudent = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee']);
 
