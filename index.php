@@ -11,7 +11,7 @@
     $db = Database::connect();
     $sql ="SELECT * FROM students"; //Requete de base
     $queryCount = "SELECT COUNT(*) AS count FROM students"; //Comptage des requetes
-    $params = []; //Clauses des requêtes
+    $params = []; //Clauses des requêtes recherche
     $triable = ["id",  "nom", "prenom", "interet", "niveau", "email", "tel", "annee"];
 
 //Recherche par nom/prénom
@@ -22,16 +22,23 @@
     }
 
 //Filtre
+    if (!empty($_GET['form_filtre']) && !empty($_GET['form_search'])){
+        $sql .= " AND annee = '" . $_GET['form_filtre'] . "'";
+    }
+    elseif(!empty($_GET['form_filtre']) && empty($_GET['form_search'])){
+        $sql .= " WHERE annee = '" . $_GET['form_filtre'] . "'";
+        
+    }
 
 //Tri des données
-if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
-    $direction = $_GET['dir'] ?? 'asc';
-    if(!in_array($direction, ['asc', 'desc'])) {
-        $direction = 'asc';
-    }
-    $sql .= " ORDER BY " . $_GET['tri'] . " $direction";
+    if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
+        $direction = $_GET['dir'] ?? 'asc';
+        if(!in_array($direction, ['asc', 'desc'])) {
+            $direction = 'asc';
+        }
+        $sql .= " ORDER BY " . $_GET['tri'] . " $direction";
 
-}
+    }
 
 
 //Pages du tableau
@@ -76,18 +83,20 @@ if(!empty($_GET['tri']) && in_array($_GET['tri'], $triable)) {
 
         <form method='GET' class='form_search' action="">
             <!-- condition isset dans le champ search avec ?? -->
-            <input id="form_search" type="text" name="form_search"  placeholder="Rechercher" class="form-control" value="<?= htmlentities($_GET['form_search'] ?? null)  ?>">
+            <input id="form_search" type="text" name="form_search" placeholder="Rechercher" class="form-control" value="<?= htmlentities($_GET['form_search'] ?? null)  ?>">
             <br>
             <button class='btn btn-success' type='submit'>Rechercher</button>
         </form>
         <form method='GET' class='form_filtre' action="">
             <!-- condition isset dans le champ search avec ?? -->
             <select name='form_filtre' class='form-control'>
-                <option value='0'>Selectionne</option>
-
+                <option value="<?= htmlentities($_GET['form_filtre'] ?? 0)  ?>" disabled selected> <?= htmlentities($_GET['form_filtre'] ?? 'Selectionnez les années à afficher')  ?> </option>
+                <option value='A1'>Année 1</option>
+                <option value='A2'>Année 2</option>
+                <option value='A3'>Année 3</option>
             </select>
             <br>
-            <button class='btn btn-success' type='submit'>Rechercher</button>
+            <button class='btn btn-success' type='submit'>Filtrer par année</button>
         </form>
 
         
