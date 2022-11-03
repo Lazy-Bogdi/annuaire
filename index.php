@@ -6,7 +6,7 @@
     require 'classes/UrlMaker.php';
     require 'classes/TriTable.php';
     require 'fonctions/fullWord.php';
-    require 'fonctions/recherche.php';
+
     define('PAR_PAGE', 10); //Constante pour nombre de résultats par page
      
     
