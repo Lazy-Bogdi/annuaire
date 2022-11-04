@@ -26,7 +26,7 @@
         $row = $query->fetch();
         
 
-        $modifStudent = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee']);
+        $modifStudent = new Student($row['nom'], $row['prenom'], $row['interet'],  $row['niveau'], $row['email'], $row['tel'], $row['annee'],$row['date_naissance'], $row['ville'], $row['etab_scol']);
 
         $formulaire = new Form2;
         
@@ -92,7 +92,7 @@
         
         <div class="container">
             <a class="btn btn-warning" href='index.php'>Retour à la liste des étudiants</a>
-            <h1> <?= $modifStudent->prenom . " " .$modifStudent->nom ?><span class="start_span_active">_</span></h1><br>
+            <h1> <?= $modifStudent->prenom . " " .$modifStudent->nom ?></h1><br>
             <?php 
                 $modifStudentForm = $formulaire->create();
                 echo $modifStudentForm;
